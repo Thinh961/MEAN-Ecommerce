@@ -1,0 +1,34 @@
+<section class="bg-white">
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto mt-20 lg:py-0">
+        <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <h2 class="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                    Đăng nhập
+                </h2>
+                <form [formGroup]="loginForm">
+                    <div>
+                        <mat-form-field class="w-full">
+                            <mat-label for="email">Email</mat-label>
+                            <input type="email" id="email" matInput placeholder="Nhập email của bạn"
+                                required formControlName="email">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="w-full">
+                            <mat-label for="password">Mật khẩu</mat-label>
+                            <input type="password" id="password" matInput placeholder="Nhập mật khẩu"
+                                required formControlName="password">
+                        </mat-form-field>
+                    </div>
+                    <button mat-raised-button class="w-full mb-5" [disabled]="loginForm.invalid" (click)="login()">
+                        Đăng nhập
+                    </button>
+                    <p class="text-sm font-light text-gray-500">
+                        Chưa có tài khoản? <a routerLink="/register"
+                            class="font-medium text-primary-600 hover:underline">Đăng ký</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
