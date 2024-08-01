@@ -68,8 +68,8 @@ async function getProductForListing(searchTerm, categoryId, page, pageSize, sort
     }
 
     const products = await Product.find(queryFilter).sort({
-        sortBy: sortOrder,
-    }).skip((page - 1) * pageSize).limit(pageSize);
+        [sortBy]: +sortOrder,
+    }).skip((+page - 1) * +pageSize).limit(+pageSize);
     return products.map(x => x.toObject());
 }
 

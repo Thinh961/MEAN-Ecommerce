@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProductCardComponent } from '../product-card/product-card.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { Category } from '../../../types/category';
 
 @Component({
   selector: 'app-home',
@@ -37,6 +39,8 @@ export class HomeComponent {
   newProducts: Product[] = [];
   featuredProducts: Product[] = [];
   bannerImages: Product[] = [];
+  authService = inject(AuthService);
+  categoryList: Category[] = [];
 
   ngOnInit(){
     this.customerService.getNewProducts().subscribe(res => {
@@ -48,5 +52,11 @@ export class HomeComponent {
       this.featuredProducts = res;
       this.bannerImages.push(...res);
     });
+
+    if(this.authService.isLoggedIn){
+      this.customerService.getCategories().subscribe((res) => {
+        this.categoryList = res;
+      });
+    }
   }
 }

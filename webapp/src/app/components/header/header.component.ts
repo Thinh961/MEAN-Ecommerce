@@ -23,10 +23,13 @@ export class HeaderComponent {
   searchTerm!: string;
 
   ngOnInit() {
-    this.customerService.getCategories().subscribe((res) => {
-      this.categoryList = res;
-    });
+    if(this.authService.isLoggedIn){
+      this.customerService.getCategories().subscribe((res) => {
+        this.categoryList = res;
+      });
+    }
   }
+
   router = inject(Router);
   onSearch(e: any) {
     if (e.target.value) {

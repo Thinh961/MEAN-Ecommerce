@@ -1,6 +1,6 @@
 <div>
     <a [routerLink]="'product/'+product._id">
-        <img class="w-full h-60 rounded-t-lg object-contain" [src]="product.images[0]" alt="product image" />
+        <img class="w-full h-80 rounded-t-lg object-cover" [src]="product.images[0]" alt="product image" />
     </a>
     @if(product.isFeatured){
     <span
@@ -14,8 +14,8 @@
     </span>
     }
     <div class="mt-4 px-5 pb-5">
-        <a [routerLink]="'product/'+product._id">
-            <h5 class="text-xl font-semibold tracking-tight text-slate-900">{{product.name}}</h5>
+        <a [routerLink]="'product/'+product._id" class="text-xl font-semibold tracking-tight text-slate-900">
+            {{product.name}}
         </a>
         <div class="mt-2.5 mb-5 flex items-center">
             <span
@@ -24,8 +24,7 @@
         <div class="flex items-center justify-between">
             <div class="flex flex-col">
                 <span class="text-sm text-slate-900 line-through">{{product.price | number}} VNĐ</span>
-                <span class="text-xl font-bold text-slate-900">{{product.price - ((product.price*product.discount)/100)
-                    | number}} VNĐ</span>
+                <span class="text-xl font-bold text-green-500">{{sellingPrice | number}} VNĐ</span>
             </div>
             <a href="#"
                 class="flex items-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">

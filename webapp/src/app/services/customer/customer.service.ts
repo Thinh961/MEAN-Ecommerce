@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Product } from '../../../types/product';
 import { Category } from '../../../types/category';
+import { Brand } from '../../../types/brand';
 
 @Injectable({
   providedIn: 'root',
@@ -29,16 +30,28 @@ export class CustomerService {
     );
   }
 
+  getBrands() {
+    return this.http.get<Brand[]>(environment.apiUrl + '/customer/brands');
+  }
+
   getProducts(
     searchTerm: string,
     categoryId: string,
     sortBy: string,
     sortOrder: number,
-    brandId: string
+    brandId: string,
+    page: number,
+    pageSize: number
   ) {
     return this.http.get<Product[]>(
       environment.apiUrl +
-        `/customer/products?searchTerm=${searchTerm}&categoryId=${categoryId}&sortBy=${sortBy}&sortOrder=${sortOrder}categoryId=${categoryId}&sortBy=${sortBy}&brandId=${brandId}`
+        `/customer/products?searchTerm=${searchTerm}&categoryId=${categoryId}&sortBy=${sortBy}&sortOrder=${sortOrder}&brandId=${brandId}&page=${page}&pageSize=${pageSize}`
+    );
+  }
+
+  getProductDetail(id: string) {
+    return this.http.get<Product>(
+      environment.apiUrl + '/customer/product/' + id
     );
   }
 }

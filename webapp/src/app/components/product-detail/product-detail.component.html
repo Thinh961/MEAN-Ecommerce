@@ -1,1 +1,137 @@
-<p>product-detail works!</p>
+@if(product){
+    <div class="max-w-7xl mx-auto p-6">
+        <!-- Product Details -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Image and Thumbnails -->
+            <div class="flex flex-col items-center lg:w-1/2">
+                <div class="w-full lg:w-[500px] lg:h-[500px] mb-4">
+                    <img [src]="selectedImage" alt="Product Image" class="w-full h-full object-cover rounded-lg shadow">
+                </div>
+                <div class="flex space-x-2">
+                    @for (image of thumbnails; track $index) {
+                    <img [src]="image" alt="Thumbnail" (click)="selectImage(image)"
+                        class="w-20 h-20 object-cover rounded-lg border border-gray-300 cursor-pointer">
+                    }
+                </div>
+            </div>
+    
+            <!-- Product Info -->
+            <div class="lg:w-1/2">
+                <h2 class="text-2xl font-bold">{{product.name}}</h2>
+                <p class="text-gray-500">{{product.shortDescription}}</p>
+                <div class="flex items-center my-4">
+                    <span class="text-2xl font-bold line-through text-gray-400">{{product.price | number}}VNĐ</span>
+                    <span class="text-blue-500 ml-2 text-lg font-semibold">{{product.discount}}% off</span>
+                    <span class="bg-yellow-400 text-white text-sm ml-4 py-1 px-2 rounded-md">4.8 ★</span>
+                </div>
+                <div class="flex items-center my-4">
+                    <span class="text-2xl font-bold text-green-500">{{ sellingPrice | number}}VNĐ</span>
+                </div>
+    
+                <!-- <div class="my-6">
+                    <h3 class="font-medium mb-2">Color</h3>
+                    <div class="flex space-x-4">
+                        <div class="p-2 border-2 border-purple-500 rounded-md cursor-pointer">
+                            <img src="https://via.placeholder.com/50x50" alt="Black" class="w-12 h-12 object-cover">
+                            <p class="text-center text-sm">Black</p>
+                        </div>
+                        <div class="p-2 border-2 rounded-md cursor-pointer">
+                            <img src="https://via.placeholder.com/50x50" alt="Brown" class="w-12 h-12 object-cover">
+                            <p class="text-center text-sm">Brown</p>
+                        </div>
+                        <div class="p-2 border-2 rounded-md cursor-pointer">
+                            <img src="https://via.placeholder.com/50x50" alt="Beige" class="w-12 h-12 object-cover">
+                            <p class="text-center text-sm">Beige</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="my-6">
+                    <h3 class="font-medium mb-2">Size (kg)</h3>
+                    <div class="flex space-x-4">
+                        <button class="py-2 px-4 border rounded-full focus:ring-2 ring-purple-500">Full Set</button>
+                        <button
+                            class="py-2 px-4 border rounded-full bg-purple-100 text-purple-700 focus:ring-2 ring-purple-500">10
+                            kg</button>
+                        <button class="py-2 px-4 border rounded-full focus:ring-2 ring-purple-500">25 kg</button>
+                        <button class="py-2 px-4 border rounded-full focus:ring-2 ring-purple-500">35 kg</button>
+                    </div>
+                </div> -->
+    
+                <div class="my-6">
+                    <div class="flex items-center border rounded-lg overflow-hidden w-32">
+                        <button class="px-4 py-2 text-xl">-</button>
+                        <span class="px-4 py-2">01</span>
+                        <button class="px-4 py-2 text-xl">+</button>
+                    </div>
+                </div>
+    
+                <div class="flex space-x-4 mt-6">
+                    <button class="bg-purple-600 text-white py-3 px-6 rounded-lg w-1/2 hover:bg-purple-700">Add To
+                        Cart</button>
+                    <button class="bg-blue-600 text-white py-3 px-6 rounded-lg w-1/2 hover:bg-blue-700">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Product Details Section -->
+        <div class="mt-12">
+            <h3 class="text-xl font-semibold mb-4">Chi tiết sản phẩm</h3>
+            <p class="text-gray-600 mb-4">
+                {{product.description}}
+            </p>
+            <!-- <ul class="list-disc list-inside text-gray-600">
+                <li>Material: ABS</li>
+                <li>Colors: Black, Brown, Beige</li>
+                <li>Size Options: Full Set, 10 kg, 25 kg, 35 kg</li>
+                <li>Durable and Lightweight</li>
+                <li>Multiple compartments for organization</li>
+            </ul> -->
+        </div>
+    
+        <!-- Sản phẩm tương tự -->
+         @if(similarProduct.length){
+            <div>
+                <h5 class="text-center text-2xl font-bold">Sản Phẩm Tương Tự</h5>
+                <div class="flex flex-wrap justify-center">
+                    @for(product of similarProduct; track $index) {
+                        <div class="relative m-4 w-full sm:w-1 md:w-1/3 lg:w-1/4 max-w-xs flex-1 overflow-hidden rounded-lg bg-white shadow-md">
+                            <app-product-card [product]="product"></app-product-card>
+                        </div>
+                    }
+                </div>
+            </div>
+         }
+    
+        <!-- User Comments Section -->
+        <div class="mt-12">
+            <h3 class="text-xl font-semibold mb-4">Đánh giá của người dùng</h3>
+    
+            <!-- Comment 1 -->
+            <div class="p-4 bg-gray-100 rounded-lg mb-4">
+                <p class="font-medium">John Doe</p>
+                <p class="text-gray-600 text-sm">This is a great product! The material is durable and the size options are
+                    perfect for my needs.</p>
+                <span class="text-sm text-yellow-400">4.5 ★</span>
+            </div>
+    
+            <!-- Comment 2 -->
+            <div class="p-4 bg-gray-100 rounded-lg mb-4">
+                <p class="font-medium">Jane Smith</p>
+                <p class="text-gray-600 text-sm">I love the design and the color options. The bag is sturdy and looks
+                    exactly as described.</p>
+                <span class="text-sm text-yellow-400">4.7 ★</span>
+            </div>
+    
+            <!-- Add Comment -->
+            <div class="mt-8">
+                <h4 class="font-medium mb-2">Viết bình luận</h4>
+                <textarea class="w-full p-4 rounded-lg border focus:ring-2 ring-purple-500" rows="4"
+                    placeholder="Write your comment..."></textarea>
+                <button class="mt-4 bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700">Submit</button>
+            </div>
+        </div>
+    </div>
+} @else {
+    <h5>Loading...!</h5>
+}
