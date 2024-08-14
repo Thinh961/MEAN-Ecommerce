@@ -29,10 +29,7 @@ export class LoginComponent {
 
   login() {
     let value = this.loginForm.value;
-    this.authService.login(value.email!, value.password!).subscribe((res:any) => {
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("user", JSON.stringify(res.user));
-      this.router.navigateByUrl("/")
-    })
+    this.authService.login(value.email!, value.password!);
   }
+  
 }

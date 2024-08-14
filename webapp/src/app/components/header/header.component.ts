@@ -7,6 +7,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { CustomerService } from '../../services/customer/customer.service';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -22,12 +23,20 @@ export class HeaderComponent {
   categoryList: Category[] = [];
   searchTerm!: string;
 
+  private subscription!: Subscription;
+
   ngOnInit() {
-    if(this.authService.isLoggedIn){
-      this.customerService.getCategories().subscribe((res) => {
-        this.categoryList = res;
-      });
-    }
+    this.subscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        this.customerService.getCategories().subscribe((res) => {
+          this.categoryList = res;
+        });
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   router = inject(Router);

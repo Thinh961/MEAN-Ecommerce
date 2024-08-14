@@ -37,6 +37,7 @@ export class ProductDetailComponent {
       this.product = res;
       this.selectedImage = this.product.images[0];
       if(this.product.images.length > 0) {
+        this.thumbnails = [];
         this.product.images.map(image => {
           this.thumbnails.push(image)
         });

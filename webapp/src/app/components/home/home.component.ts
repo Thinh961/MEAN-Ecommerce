@@ -53,10 +53,10 @@ export class HomeComponent {
       this.bannerImages.push(...res);
     });
 
-    if(this.authService.isLoggedIn){
-      this.customerService.getCategories().subscribe((res) => {
-        this.categoryList = res;
-      });
-    }
+    // if(this.authService.isLoggedIn){
+    //   this.customerService.getCategories().subscribe((res) => {
+    //     this.categoryList = res;
+    //   });
+    // }
   }
 }

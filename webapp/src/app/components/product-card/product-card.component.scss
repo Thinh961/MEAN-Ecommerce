@@ -1,0 +1,67 @@
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.opacity-0 {
+    opacity: 0;
+}
+
+.opacity-100 {
+    opacity: 1;
+}
+
+.bg-black {
+    background-color: rgba(0, 0, 0, 0.5); /* Nền đen mờ */
+}
+
+.bg-opacity-50 {
+    background-opacity: 0.5;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-4xl {
+    font-size: 2rem;
+}
+
+.mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.transition-opacity {
+    transition-property: opacity;
+}
+
+.duration-300 {
+    transition-duration: 300ms;
+}
