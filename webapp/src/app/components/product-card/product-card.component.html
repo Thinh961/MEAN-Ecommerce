@@ -17,7 +17,11 @@
         }
         <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-visible">
             <button (click)="addToWishList(product)">
-                <mat-icon style="width: 45px; height: 45px;" class="text-white text-5xl mx-4" aria-hidden="false" aria-label="Favorite icon" fontIcon="favorite"></mat-icon>
+                @if (isInWishList(product)) {
+                    <mat-icon style="width: 45px; height: 45px;" class="text-red-500 text-5xl mx-4" aria-hidden="false" aria-label="Favorite icon" fontIcon="favorite"></mat-icon>
+                } @else {
+                    <mat-icon style="width: 45px; height: 45px;" class="text-white text-5xl mx-4" aria-hidden="false" aria-label="Favorite icon" fontIcon="favorite_border"></mat-icon>
+                }
             </button>
             <button>
                 <mat-icon style="width: 45px; height: 45px;" class="text-white text-5xl mx-4" aria-hidden="false" aria-label="Shopping cart icon" fontIcon="add_shopping_cart"></mat-icon>
